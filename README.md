@@ -1,5 +1,10 @@
 # fuse
 
+[![CI](https://github.com/HimClix/fuse/actions/workflows/ci.yml/badge.svg)](https://github.com/HimClix/fuse/actions/workflows/ci.yml)
+[![Go Reference](https://pkg.go.dev/badge/github.com/HimClix/fuse.svg)](https://pkg.go.dev/github.com/HimClix/fuse)
+[![Go Report Card](https://goreportcard.com/badge/github.com/HimClix/fuse)](https://goreportcard.com/report/github.com/HimClix/fuse)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 Configuration management for Go that finally makes sense.
 
 ---
