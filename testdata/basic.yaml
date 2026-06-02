@@ -1,0 +1,10 @@
+app:
+  port: 9090
+  host: api.example.com
+  env: prod
+  logLevel: warn
+db:
+  host: db.example.com
+  port: 5432
+  name: myapp
+  password: secret123

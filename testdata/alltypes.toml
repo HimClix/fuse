@@ -1,0 +1,40 @@
+[app]
+  name = "fuse-test"
+  port = 8080
+  rate = 0.95
+  enabled = true
+  timeout = "5s"
+  maxRetries = 3
+  debugPort = 6060
+
+[app.server]
+  host = "api.example.com"
+  grpcPort = 9090
+
+[app.server.tls]
+  enabled = true
+  certFile = "/etc/ssl/cert.pem"
+  keyFile = "/etc/ssl/key.pem"
+
+[db]
+  host = "db.example.com"
+  port = 5432
+  maxOpen = 25
+  maxIdle = 5
+  maxLifetimeSecs = 300.5
+  readOnly = false
+  password = "db-secret"
+
+[db.replicas]
+  hosts = ["replica1:5432", "replica2:5432", "replica3:5432"]
+  weights = [50, 30, 20]
+
+[kafka]
+  brokers = ["broker1:9092", "broker2:9092"]
+  enableTLS = true
+  groupID = "fuse-consumer"
+
+[tags]
+  env = "prod"
+  team = "platform"
+  region = "ap-south-1"

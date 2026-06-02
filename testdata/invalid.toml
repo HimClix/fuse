@@ -1,0 +1,3 @@
+[app
+  port = "not-closed-bracket
+  env = prod

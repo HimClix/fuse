@@ -1,0 +1,20 @@
+# Only values that differ from default.toml.
+# Fuse deep-merges this on top — no need to duplicate the full config.
+
+[app]
+  env      = "prod"
+  port     = "8443"
+
+[database]
+  host    = "prod-db.internal"
+  sslMode = "require"
+
+  [database.pool]
+    maxOpenConnections = 25
+
+[kafka]
+  brokers   = ["broker1:9092", "broker2:9092", "broker3:9092"]
+  enableTLS = true
+
+[sentry]
+  enabled = true

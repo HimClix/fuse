@@ -1,0 +1,6 @@
+[app]
+  port = 9090
+  env = "prod"
+
+[db]
+  host = "prod-db.internal"

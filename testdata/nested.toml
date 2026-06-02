@@ -1,0 +1,22 @@
+[app]
+  env = "prod"
+
+[app.server]
+  port = 9090
+  host = "api.example.com"
+
+[app.server.tls]
+  enabled = true
+  certFile = "/etc/ssl/cert.pem"
+  keyFile = "/etc/ssl/key.pem"
+
+[db]
+  host = "db.example.com"
+  port = 5432
+  name = "myapp"
+  password = "secret"
+
+[db.pool]
+  maxOpen = 25
+  maxIdle = 5
+  maxLifetimeSecs = 300
