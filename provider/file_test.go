@@ -12,7 +12,9 @@ func TestFileProvider(t *testing.T) {
 	tests := []struct {
 		name    string
 		content string
-		parser  interface{ Parse([]byte) (map[string]any, error) }
+		parser  interface {
+			Parse([]byte) (map[string]any, error)
+		}
 		wantKey string
 	}{
 		{"TOML", "[app]\nport = 9090", parser.TOML(), "app"},

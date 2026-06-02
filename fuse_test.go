@@ -33,13 +33,13 @@ type AllTypesConfig struct {
 		}
 	}
 	DB struct {
-		Host            string  `conf:"env:DB_HOST"            validate:"required"`
-		Port            int     `conf:"default:5432"`
-		MaxOpen         int     `validate:"gte=1"`
+		Host            string `conf:"env:DB_HOST"            validate:"required"`
+		Port            int    `conf:"default:5432"`
+		MaxOpen         int    `validate:"gte=1"`
 		MaxIdle         int
 		MaxLifetimeSecs float64
 		ReadOnly        bool
-		Password        string  `conf:"env:DB_PASSWORD,secret" validate:"required"`
+		Password        string `conf:"env:DB_PASSWORD,secret" validate:"required"`
 	}
 	Kafka struct {
 		Brokers   []string `validate:"required,min=1"`
@@ -370,11 +370,11 @@ func TestFullPrecedenceChain(t *testing.T) {
 	t.Setenv("PREC_APP_PORT", "5000")
 
 	result, err := fuse.Load[AllTypesConfig](
-		provider.Defaults[AllTypesConfig](),                        // port=8080
-		provider.File("testdata/alltypes.toml", parser.TOML()),     // port=8080
-		provider.File("testdata/override.toml", parser.TOML()),     // port=8443
-		provider.Env[AllTypesConfig]("PREC"),                       // port=5000
-		provider.Flags[AllTypesConfig]([]string{"--app-port=6000"}),// port=6000
+		provider.Defaults[AllTypesConfig](),                         // port=8080
+		provider.File("testdata/alltypes.toml", parser.TOML()),      // port=8080
+		provider.File("testdata/override.toml", parser.TOML()),      // port=8443
+		provider.Env[AllTypesConfig]("PREC"),                        // port=5000
+		provider.Flags[AllTypesConfig]([]string{"--app-port=6000"}), // port=6000
 	)
 	if err != nil {
 		t.Fatalf("Load failed: %v", err)

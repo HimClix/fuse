@@ -5,10 +5,10 @@ import "testing"
 func TestCompareValidators(t *testing.T) {
 	e := New()
 	type cfg struct {
-		Port  int    `validate:"required,gte=1,lte=65535"`
-		Name  string `validate:"required,min=3,max=50"`
+		Port  int     `validate:"required,gte=1,lte=65535"`
+		Name  string  `validate:"required,min=3,max=50"`
 		Rate  float64 `validate:"gte=0,lte=1"`
-		Level string `validate:"oneof=debug info warn error"`
+		Level string  `validate:"oneof=debug info warn error"`
 	}
 
 	tests := []struct {
@@ -71,22 +71,54 @@ func TestFormatValidators(t *testing.T) {
 		val     any
 		wantErr bool
 	}{
-		{"valid email", &struct{ E string `validate:"email"` }{"user@example.com"}, false},
-		{"invalid email", &struct{ E string `validate:"email"` }{"not-email"}, true},
-		{"valid url", &struct{ U string `validate:"url"` }{"https://example.com"}, false},
-		{"invalid url", &struct{ U string `validate:"url"` }{"no-scheme"}, true},
-		{"valid ip", &struct{ I string `validate:"ip"` }{"192.168.1.1"}, false},
-		{"invalid ip", &struct{ I string `validate:"ip"` }{"999.999.999.999"}, true},
-		{"valid uuid", &struct{ U string `validate:"uuid"` }{"550e8400-e29b-41d4-a716-446655440000"}, false},
-		{"invalid uuid", &struct{ U string `validate:"uuid"` }{"not-uuid"}, true},
-		{"valid json", &struct{ J string `validate:"json"` }{`{"a":1}`}, false},
-		{"invalid json", &struct{ J string `validate:"json"` }{`{bad`}, true},
-		{"valid hostname_port", &struct{ H string `validate:"hostname_port"` }{"localhost:8080"}, false},
-		{"invalid hostname_port", &struct{ H string `validate:"hostname_port"` }{"no-port"}, true},
-		{"valid semver", &struct{ S string `validate:"semver"` }{"1.2.3"}, false},
-		{"invalid semver", &struct{ S string `validate:"semver"` }{"abc"}, true},
-		{"valid cidr", &struct{ C string `validate:"cidr"` }{"10.0.0.0/8"}, false},
-		{"valid base64", &struct{ B string `validate:"base64"` }{"aGVsbG8="}, false},
+		{"valid email", &struct {
+			E string `validate:"email"`
+		}{"user@example.com"}, false},
+		{"invalid email", &struct {
+			E string `validate:"email"`
+		}{"not-email"}, true},
+		{"valid url", &struct {
+			U string `validate:"url"`
+		}{"https://example.com"}, false},
+		{"invalid url", &struct {
+			U string `validate:"url"`
+		}{"no-scheme"}, true},
+		{"valid ip", &struct {
+			I string `validate:"ip"`
+		}{"192.168.1.1"}, false},
+		{"invalid ip", &struct {
+			I string `validate:"ip"`
+		}{"999.999.999.999"}, true},
+		{"valid uuid", &struct {
+			U string `validate:"uuid"`
+		}{"550e8400-e29b-41d4-a716-446655440000"}, false},
+		{"invalid uuid", &struct {
+			U string `validate:"uuid"`
+		}{"not-uuid"}, true},
+		{"valid json", &struct {
+			J string `validate:"json"`
+		}{`{"a":1}`}, false},
+		{"invalid json", &struct {
+			J string `validate:"json"`
+		}{`{bad`}, true},
+		{"valid hostname_port", &struct {
+			H string `validate:"hostname_port"`
+		}{"localhost:8080"}, false},
+		{"invalid hostname_port", &struct {
+			H string `validate:"hostname_port"`
+		}{"no-port"}, true},
+		{"valid semver", &struct {
+			S string `validate:"semver"`
+		}{"1.2.3"}, false},
+		{"invalid semver", &struct {
+			S string `validate:"semver"`
+		}{"abc"}, true},
+		{"valid cidr", &struct {
+			C string `validate:"cidr"`
+		}{"10.0.0.0/8"}, false},
+		{"valid base64", &struct {
+			B string `validate:"base64"`
+		}{"aGVsbG8="}, false},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -199,7 +231,9 @@ func TestCustomValidator(t *testing.T) {
 		return ok && v >= 1 && v <= 65535
 	})
 
-	type cfg struct{ Port int `validate:"is_port"` }
+	type cfg struct {
+		Port int `validate:"is_port"`
+	}
 
 	tests := []struct {
 		name    string
@@ -222,7 +256,9 @@ func TestCustomValidator(t *testing.T) {
 
 func TestUniqueValidator(t *testing.T) {
 	e := New()
-	type cfg struct{ Tags []string `validate:"unique"` }
+	type cfg struct {
+		Tags []string `validate:"unique"`
+	}
 
 	tests := []struct {
 		name    string

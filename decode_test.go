@@ -16,17 +16,52 @@ func TestDecodeScalars(t *testing.T) {
 		U uint
 	}
 	tests := []struct {
-		name string
-		data map[string]any
+		name  string
+		data  map[string]any
 		check func(cfg) string
 	}{
-		{"string", map[string]any{"s": "hello"}, func(c cfg) string { if c.S != "hello" { return "S" }; return "" }},
-		{"int", map[string]any{"i": int64(42)}, func(c cfg) string { if c.I != 42 { return "I" }; return "" }},
-		{"int from string", map[string]any{"i": "99"}, func(c cfg) string { if c.I != 99 { return "I" }; return "" }},
-		{"float", map[string]any{"f": 3.14}, func(c cfg) string { if c.F != 3.14 { return "F" }; return "" }},
-		{"bool", map[string]any{"b": true}, func(c cfg) string { if !c.B { return "B" }; return "" }},
-		{"bool from string", map[string]any{"b": "true"}, func(c cfg) string { if !c.B { return "B" }; return "" }},
-		{"uint", map[string]any{"u": int64(10)}, func(c cfg) string { if c.U != 10 { return "U" }; return "" }},
+		{"string", map[string]any{"s": "hello"}, func(c cfg) string {
+			if c.S != "hello" {
+				return "S"
+			}
+			return ""
+		}},
+		{"int", map[string]any{"i": int64(42)}, func(c cfg) string {
+			if c.I != 42 {
+				return "I"
+			}
+			return ""
+		}},
+		{"int from string", map[string]any{"i": "99"}, func(c cfg) string {
+			if c.I != 99 {
+				return "I"
+			}
+			return ""
+		}},
+		{"float", map[string]any{"f": 3.14}, func(c cfg) string {
+			if c.F != 3.14 {
+				return "F"
+			}
+			return ""
+		}},
+		{"bool", map[string]any{"b": true}, func(c cfg) string {
+			if !c.B {
+				return "B"
+			}
+			return ""
+		}},
+		{"bool from string", map[string]any{"b": "true"}, func(c cfg) string {
+			if !c.B {
+				return "B"
+			}
+			return ""
+		}},
+		{"uint", map[string]any{"u": int64(10)}, func(c cfg) string {
+			if c.U != 10 {
+				return "U"
+			}
+			return ""
+		}},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -43,8 +78,11 @@ func TestDecodeScalars(t *testing.T) {
 
 func TestDecodeNested(t *testing.T) {
 	type cfg struct {
-		App struct{ Port int; Host string }
-		DB  struct{ Host string }
+		App struct {
+			Port int
+			Host string
+		}
+		DB struct{ Host string }
 	}
 	data := map[string]any{
 		"app": map[string]any{"port": int64(9090), "host": "api.test.com"},
@@ -68,7 +106,10 @@ func TestDecodeNested(t *testing.T) {
 }
 
 func TestDecodeSlice(t *testing.T) {
-	var c struct{ Tags []string; Ports []int }
+	var c struct {
+		Tags  []string
+		Ports []int
+	}
 	data := map[string]any{"tags": []any{"go", "config"}, "ports": []any{int64(80), int64(443)}}
 	if err := decode.Map(data, &c); err != nil {
 		t.Fatal(err)
@@ -118,8 +159,8 @@ func TestDecodeDuration(t *testing.T) {
 
 func TestDecodeErrors(t *testing.T) {
 	tests := []struct {
-		name string
-		data map[string]any
+		name   string
+		data   map[string]any
 		target any
 	}{
 		{"nil pointer", map[string]any{}, (*struct{ X int })(nil)},

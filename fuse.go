@@ -109,7 +109,7 @@ func (r *Result[T]) Print() {
 // asProvider wraps an internal resolve.Provider as a fuse.Provider.
 type internalProvider struct{ inner resolve.Provider }
 
-func (p *internalProvider) Name() string                    { return p.inner.Name() }
+func (p *internalProvider) Name() string                  { return p.inner.Name() }
 func (p *internalProvider) Load() (map[string]any, error) { return p.inner.Load() }
 
 func asProvider(p resolve.Provider) Provider { return &internalProvider{inner: p} }

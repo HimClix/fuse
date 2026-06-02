@@ -77,7 +77,9 @@ func TestStructMetaNestedFields(t *testing.T) {
 func TestStructMetaCache(t *testing.T) {
 	type cfg struct{ Port int }
 	typ := reflect.TypeOf(cfg{})
-	if tag.Get(typ) != tag.Get(typ) {
+	first := tag.Get(typ)
+	second := tag.Get(typ)
+	if first != second {
 		t.Error("cache should return same pointer")
 	}
 }

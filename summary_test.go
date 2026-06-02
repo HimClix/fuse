@@ -15,11 +15,11 @@ func TestSummary(t *testing.T) {
 	}
 
 	tests := []struct {
-		name      string
-		cfg       *cfg
-		sources   map[string]string
-		contains  []string
-		excludes  []string
+		name     string
+		cfg      *cfg
+		sources  map[string]string
+		contains []string
+		excludes []string
 	}{
 		{
 			name:     "masks secrets",

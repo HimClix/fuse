@@ -4,15 +4,29 @@ import "testing"
 
 func TestParsers(t *testing.T) {
 	tests := []struct {
-		name    string
-		parser  func() interface{ Parse([]byte) (map[string]any, error) }
+		name   string
+		parser func() interface {
+			Parse([]byte) (map[string]any, error)
+		}
 		input   string
 		wantKey string
 		wantVal any
 	}{
-		{"TOML", func() interface{ Parse([]byte) (map[string]any, error) } { return TOML() }, "[app]\nport = 8080", "app", map[string]any{"port": int64(8080)}},
-		{"YAML", func() interface{ Parse([]byte) (map[string]any, error) } { return YAML() }, "app:\n  port: 8080", "app", map[string]any{"port": 8080}},
-		{"JSON", func() interface{ Parse([]byte) (map[string]any, error) } { return JSON() }, `{"app":{"port":8080}}`, "app", map[string]any{"port": float64(8080)}},
+		{"TOML", func() interface {
+			Parse([]byte) (map[string]any, error)
+		} {
+			return TOML()
+		}, "[app]\nport = 8080", "app", map[string]any{"port": int64(8080)}},
+		{"YAML", func() interface {
+			Parse([]byte) (map[string]any, error)
+		} {
+			return YAML()
+		}, "app:\n  port: 8080", "app", map[string]any{"port": 8080}},
+		{"JSON", func() interface {
+			Parse([]byte) (map[string]any, error)
+		} {
+			return JSON()
+		}, `{"app":{"port":8080}}`, "app", map[string]any{"port": float64(8080)}},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -30,8 +44,10 @@ func TestParsers(t *testing.T) {
 func TestParsersInvalidInput(t *testing.T) {
 	tests := []struct {
 		name   string
-		parser interface{ Parse([]byte) (map[string]any, error) }
-		input  string
+		parser interface {
+			Parse([]byte) (map[string]any, error)
+		}
+		input string
 	}{
 		{"TOML invalid", TOML(), "[broken"},
 		{"YAML invalid", YAML(), ":\n  - :\n  bad"},

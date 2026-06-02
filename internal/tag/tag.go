@@ -18,8 +18,8 @@ type Info struct {
 // FieldMeta holds all metadata for a single struct field.
 type FieldMeta struct {
 	Name     string
-	Path     string       // dot-separated: "DB.Host"
-	Index    []int        // reflect field index chain
+	Path     string // dot-separated: "DB.Host"
+	Index    []int  // reflect field index chain
 	Type     reflect.Type
 	Kind     reflect.Kind
 	Conf     Info

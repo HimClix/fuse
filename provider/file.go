@@ -62,5 +62,5 @@ type errProvider struct {
 	err  error
 }
 
-func (p *errProvider) Name() string                    { return p.name }
+func (p *errProvider) Name() string                  { return p.name }
 func (p *errProvider) Load() (map[string]any, error) { return nil, p.err }
