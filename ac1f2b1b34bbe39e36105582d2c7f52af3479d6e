@@ -1,0 +1,4 @@
+tag_test.go
+  338af127-271b-4e45-908d-12085385ef30:2026-06-02T07:02:25.789Z 80-82
+---
+{"schema_version": "authorship/3.0.0", "base_commit_sha": "HEAD~1", "prompts": {"338af127-271b-4e45-908d-12085385ef30:2026-06-02T07:02:25.789Z": {"agent_id": {"tool": "claude_code", "model": ""}, "human_author": "himanshu.asati@razorpay.com", "accepted_lines": 3, "overriden_lines": 0}}}
